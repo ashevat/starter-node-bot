@@ -35,6 +35,7 @@ controller.hears('.*', ['mention'], function (bot, message) {
   bot.reply(message, 'You really do care about me. :heart:')
 })
 
+
 controller.hears('help', ['direct_message', 'direct_mention'], function (bot, message) {
   var help = 'I will respond to the following messages: \n' +
       '`bot hi` for a simple message.\n' +
@@ -64,5 +65,5 @@ controller.hears(['attachment'], ['direct_message', 'direct_mention'], function 
 })
 
 controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, message) {
-  bot.reply(message, 'Sorry <@' + message.user + '>, I don\'t understand. \n')
+  bot.reply(message, 'Sorry <@' + message.user + '>, I don\'t understand '+ message.text +'. \n')
 })
