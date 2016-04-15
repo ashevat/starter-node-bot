@@ -65,5 +65,21 @@ controller.hears(['attachment'], ['direct_message', 'direct_mention'], function 
 })
 
 controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, message) {
-  bot.reply(message, 'Sorry <@' + message.user + '>, I don\'t understand - `'+ message.text +'`. \n')
+  var reply_with_attachments = {
+    'username': 'My bot' ,
+    'text': 'This is a pre-text',
+    'attachments': [
+      {
+        'fallback': 'To be useful, I need understand `'+ message.text +'`',
+        'title': 'How can I help you?',
+        'text': 'To be useful, I need understand `'+ message.text +'`',
+        'color': '#7CD197'
+      }
+    ],
+    'icon_url': 'http://lorempixel.com/48/48'
+  }
+
+  bot.reply(message, reply_with_attachments);
+
+  //bot.reply(message, 'Sorry <@' + message.user + '>, I don\'t understand - `'+ message.text +'`. \n')
 })
