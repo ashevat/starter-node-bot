@@ -70,9 +70,9 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
     'text': 'This is a pre-text',
     'attachments': [
       {
-        'fallback': 'To be useful, I need understand `'+ message.text +'`',
+        'fallback': 'To be useful, I need know `'+ message.text +'`',
         'title': 'How can I help you?',
-        'text': 'To be useful, I need understand `'+ message.text +'`',
+        'text': 'To be useful, I need know `'+ message.text +'`',
         'color': '#7CD197'
       }
     ],
@@ -81,5 +81,4 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
 
   bot.reply(message, reply_with_attachments);
 
-  //bot.reply(message, 'Sorry <@' + message.user + '>, I don\'t understand - `'+ message.text +'`. \n')
 })
