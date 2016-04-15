@@ -65,5 +65,5 @@ controller.hears(['attachment'], ['direct_message', 'direct_mention'], function 
 })
 
 controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, message) {
-  bot.reply(message, 'Sorry <@' + message.user + '>, I don\'t understand: `'+ message.text +'`. \n')
+  bot.reply(message, 'Sorry <@' + message.user + '>, I don\'t understand - `'+ message.text +'`. \n')
 })
