@@ -65,6 +65,7 @@ controller.hears(['attachment'], ['direct_message', 'direct_mention'], function 
 })
 
 controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, message) {
+  word  = message.text
   var reply_with_attachments = {
     'username': 'My bot' ,
     'text': 'This is a pre-text',
@@ -79,6 +80,27 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
     'icon_url': 'http://lorempixel.com/48/48'
   }
 
-  bot.reply(message, reply_with_attachments);
+
+  http.get({
+    host: 'www.dictionaryapi.com',
+    path: '/api/v1/references/thesaurus/xml/fun?key=d08999a5-7466-4eca-8051-1b2dfd324740'
+  }, function(response) {
+    // Continuously update stream with data
+    var body = '';
+    response.on('data', function(d) {
+      body += d;
+    });
+    response.on('end', function() {
+      bot.reply(message, body)
+      // Data reception is done, do whatever with it!
+      //var parsed = JSON.parse(body);
+     // callback({
+     //   email: parsed.email,
+     //   password: parsed.pass
+     // });
+    });
+  });
+
+  //bot.reply(message, reply_with_attachments);
 
 })
