@@ -82,25 +82,29 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
   }
 
 
-  http.get({
+  //The url we want is: 'www.random.org/integers/?num=1&min=1&max=10&col=1&base=10&format=plain&rnd=new'
+  var options = {
     host: 'www.dictionaryapi.com',
     path: '/api/v1/references/thesaurus/xml/fun?key=d08999a5-7466-4eca-8051-1b2dfd324740'
-  }, function(response) {
-    // Continuously update stream with data
-    var body = '';
-    response.on('data', function(d) {
-      body += d;
+  };
+
+  callback = function(response) {
+    var str = '';
+
+    //another chunk of data has been recieved, so append it to `str`
+    response.on('data', function (chunk) {
+      str += chunk;
     });
-    response.on('end', function() {
-      bot.reply(message, body)
-      // Data reception is done, do whatever with it!
-      //var parsed = JSON.parse(body);
-     // callback({
-     //   email: parsed.email,
-     //   password: parsed.pass
-     // });
+
+    //the whole response has been recieved, so we just print it out here
+    response.on('end', function () {
+      console.log(str);
     });
-  });
+  }
+
+  http.request(options, callback).end();
+
+ 
 
   //bot.reply(message, reply_with_attachments);
 
