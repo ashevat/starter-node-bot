@@ -103,7 +103,7 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
       parseString(xml, function (err, result) {
         console.dir(JSON.stringify(result));
         definition  = result["entry_list"]["entry"][0]["sens"];
-        console.log("definition = "+ JSON.stringify(definition));
+        console.log("definition = "+ definition);
       });
       console.log(str);
       bot.reply(message, 'Got it back!');
