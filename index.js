@@ -99,7 +99,7 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
     //the whole response has been recieved, so we just print it out here
     response.on('end', function () {
       var parseString = require('xml2js').parseString;
-      var xml = '<?xml version="1.0" encoding="UTF-8" ?><business><company>Code Blog</company><owner>Nic Raboy</owner><employee><firstname>Nic</firstname><lastname>Raboy</lastname></employee><employee><firstname>Maria</firstname><lastname>Campos</lastname></employee></business>';
+      var xml = str;
       parseString(xml, function (err, result) {
         console.dir(JSON.stringify(result));
       });
