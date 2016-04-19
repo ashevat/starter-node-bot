@@ -85,7 +85,7 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
   //The url we want is: 'www.random.org/integers/?num=1&min=1&max=10&col=1&base=10&format=plain&rnd=new'
   var options = {
     host: 'www.dictionaryapi.com',
-    path: '/api/v1/references/thesaurus/xml/fun?key=d08999a5-7466-4eca-8051-1b2dfd324740'
+    path: '/api/v1/references/thesaurus/xml/'+word+'?key=d08999a5-7466-4eca-8051-1b2dfd324740'
   };
 
   callback = function(response) {
