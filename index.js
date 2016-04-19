@@ -102,11 +102,11 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
       var xml = str;
       parseString(xml, function (err, result) {
         console.dir(JSON.stringify(result));
-        definition  = result["entry_list"]["entry"][0]["sens"][0]["mc"];
+        definition  = result["entry_list"]["entry"][0]["sens"][0]["mc"][0];
         console.log("definition = "+ JSON.stringify(definition));
       });
       console.log(str);
-      bot.reply(message, 'Got it back!');
+      bot.reply(message, definition);
     });
   }
 
