@@ -99,12 +99,13 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
     //the whole response has been recieved, so we just print it out here
     response.on('end', function () {
       console.log(str);
+      bot.reply(message, str);
     });
   }
 
   http.request(options, callback).end();
 
- 
+
 
   //bot.reply(message, reply_with_attachments);
 
