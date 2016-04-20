@@ -65,7 +65,7 @@ controller.hears(['attachment'], ['direct_message', 'direct_mention'], function 
   })
 })
 
-controller.hears(['define-.*', 'define:.*', 'Define .*'], ['direct_message', 'direct_mention'], function (bot, message) {
+controller.hears(['define.*', 'Define.*'], ['direct_message', 'direct_mention'], function (bot, message) {
   message.text = string.substring(7)
   bot.reply(message, "Looking for `"+message.text+"`");
 })
