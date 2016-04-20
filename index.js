@@ -65,6 +65,10 @@ controller.hears(['attachment'], ['direct_message', 'direct_mention'], function 
   })
 })
 
+controller.hears(['define.*', 'Define.*'], ['direct_message', 'direct_mention'], function (bot, message) {
+  bot.reply(message, "Looking for `"+message.text+"`");
+})
+
 controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, message) {
   word  = message.text
   safe_word = encodeURIComponent(word)
