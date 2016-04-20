@@ -87,37 +87,38 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
       var xml = str;
       parseString(xml, function (err, result) {
         console.dir(JSON.stringify(result));
-        definition  = result["entry_list"]["entry"][0]["sens"][0]["mc"][0];
-        synonyms  = result["entry_list"]["entry"][0]["sens"][0]["syn"][0];
+
 
         resultNum  = result["entry_list"]["entry"].length
         console.log("definition = "+ JSON.stringify(definition));
       });
       console.log(str);
 
-      var attachments = ""
+      var attachments = []
       for(pos = 0; pos < resultNum; pos++){
-        attachments += {
-          
-        }
+        definition  = result["entry_list"]["entry"][pos]["sens"][0]["mc"][0];
+        synonyms  = result["entry_list"]["entry"][pos]["sens"][0]["syn"][0];
+        attachments.push(
+            {
+              'fallback': 'Definition -  `'+ definition +'`',
+              'title': 'Definition',
+              'text': definition,
+              'color': '#7CD197'
+            },
+            {
+              'fallback': 'Synonyms -  `'+ synonyms +'`',
+              'title': 'Synonyms',
+              'text': synonyms,
+              'color': '#7CD197'
+            }
+        )
       }
 
       var reply_with_attachments = {
         'username': 'My bot' ,
         'text': resultNum+' results for `'+word+'`',
         'attachments': [
-          {
-            'fallback': 'Definition -  `'+ definition +'`',
-            'title': 'Definition',
-            'text': definition,
-            'color': '#7CD197'
-          },
-          {
-            'fallback': 'Synonyms -  `'+ synonyms +'`',
-            'title': 'Synonyms',
-            'text': synonyms,
-            'color': '#7CD197'
-          }
+          attachments
         ],
         'icon_url': 'http://lorempixel.com/48/48'
       }
