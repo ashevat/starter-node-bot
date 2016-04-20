@@ -101,7 +101,7 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
         synonyms_ = results["entry_list"]["entry"][pos]["sens"][0]["syn"][0]["_"]
         name = results["entry_list"]["entry"][pos]['$']["id"]
         if(synonyms == undefined){
-          synonyms = synonyms_;
+          synonyms = synonyms_["_"];
         }
         console.log("synonyms = "+ JSON.stringify(synonyms));
 
