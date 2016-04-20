@@ -67,21 +67,6 @@ controller.hears(['attachment'], ['direct_message', 'direct_mention'], function 
 
 controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, message) {
   word  = message.text
-  var reply_with_attachments = {
-    'username': 'My bot' ,
-    'text': 'This is a pre-text',
-    'attachments': [
-      {
-        'fallback': 'To be useful, I need know `'+ message.text +'`',
-        'title': 'How can I help you?',
-        'text': 'To be useful, I need know `'+ message.text +'`',
-        'color': '#7CD197'
-      }
-    ],
-    'icon_url': 'http://lorempixel.com/48/48'
-  }
-
-
   //The url we want is: 'www.random.org/integers/?num=1&min=1&max=10&col=1&base=10&format=plain&rnd=new'
   var options = {
     host: 'www.dictionaryapi.com',
@@ -106,7 +91,22 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
         console.log("definition = "+ JSON.stringify(definition));
       });
       console.log(str);
-      bot.reply(message, definition);
+      var reply_with_attachments = {
+        'username': 'My bot' ,
+        'text': 'Results for `'+word+'`',
+        'attachments': [
+          {
+            'fallback': 'Definition -  `'+ definition +'`',
+            'title': 'Definition',
+            'text': definition,
+            'color': '#7CD197'
+          }
+        ],
+        'icon_url': 'http://lorempixel.com/48/48'
+      }
+
+
+      bot.reply(message, reply_with_attachments);
     });
   }
 
