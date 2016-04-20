@@ -89,13 +89,12 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
       parseString(xml, function (err, result) {
         console.dir(JSON.stringify(result));
         results = result
-        resultNum  = result["entry_list"]["entry"].length
         //console.log("definition = "+ JSON.stringify(definition));
       });
       console.log(str);
 
       var attachments = []
-      for(pos = 0; pos < resultNum; pos++){
+      for(pos = 0; pos < results["entry_list"]["entry"].length ; pos++){
         definition  = results["entry_list"]["entry"][pos]["sens"][0]["mc"][0];
         synonyms  = results["entry_list"]["entry"][pos]["sens"][0]["syn"][0];
         attachments.push(
