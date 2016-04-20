@@ -99,19 +99,11 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
         definition  = results["entry_list"]["entry"][pos]["sens"][0]["mc"][0];
         synonyms  = results["entry_list"]["entry"][pos]["sens"][0]["syn"][0];
         synonyms_ = results["entry_list"]["entry"][pos]["sens"][0]["syn"][0]["_"]
-
+        if(synonyms == undefined){
+          synonyms = synonyms_;
+        }
         console.log("synonyms = "+ JSON.stringify(synonyms));
-        console.log("synonyms_ = "+ JSON.stringify(synonyms_));
-        if(!synonyms){
-          attachments.push(
-              {
-                'fallback': 'Definition -  `'+ definition +'`',
-                'title': 'Definition',
-                'text': definition,
-                'color': '#7CD197'
-              }
-          )
-        }else {
+
           attachments.push(
               {
                 'fallback': 'Definition -  `'+ definition +'`',
@@ -126,10 +118,6 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
                 'color': '#7CD197'
               }
           )
-
-        }
-
-
 
       }
 
