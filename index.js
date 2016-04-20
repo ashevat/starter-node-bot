@@ -92,7 +92,11 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
         //
       });
       console.log(str);
-
+      // check if there are results-
+      if(!("entry" in results["entry_list"])){
+        bot.reply(message, "Could not find a Definition or Synonyms for "+word);
+        return;
+      }
       var attachments = []
       var resultNum = results["entry_list"]["entry"].length;
       for(pos = 0; pos < resultNum ; pos++){
