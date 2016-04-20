@@ -98,7 +98,10 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
       for(pos = 0; pos < resultNum ; pos++){
         definition  = results["entry_list"]["entry"][pos]["sens"][0]["mc"][0];
         synonyms  = results["entry_list"]["entry"][pos]["sens"][0]["syn"][0];
+        synonyms_ = results["entry_list"]["entry"][pos]["sens"][0]["syn"][0]["_"]
+
         console.log("synonyms = "+ JSON.stringify(synonyms));
+        console.log("synonyms_ = "+ JSON.stringify(synonyms_));
         if(!synonyms){
           attachments.push(
               {
