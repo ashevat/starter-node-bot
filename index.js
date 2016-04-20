@@ -85,10 +85,10 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
     response.on('end', function () {
       var parseString = require('xml2js').parseString;
       var xml = str;
+      var results = [];
       parseString(xml, function (err, result) {
         console.dir(JSON.stringify(result));
-
-
+        results = result
         resultNum  = result["entry_list"]["entry"].length
         //console.log("definition = "+ JSON.stringify(definition));
       });
@@ -96,8 +96,8 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
 
       var attachments = []
       for(pos = 0; pos < resultNum; pos++){
-        definition  = result["entry_list"]["entry"][pos]["sens"][0]["mc"][0];
-        synonyms  = result["entry_list"]["entry"][pos]["sens"][0]["syn"][0];
+        definition  = results["entry_list"]["entry"][pos]["sens"][0]["mc"][0];
+        synonyms  = results["entry_list"]["entry"][pos]["sens"][0]["syn"][0];
         attachments.push(
             {
               'fallback': 'Definition -  `'+ definition +'`',
