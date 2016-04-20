@@ -117,9 +117,7 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
       var reply_with_attachments = {
         'username': 'My bot' ,
         'text': resultNum+' results for `'+word+'`',
-        'attachments': [
-          attachments
-        ],
+        'attachments': attachments,
         'icon_url': 'http://lorempixel.com/48/48'
       }
 
