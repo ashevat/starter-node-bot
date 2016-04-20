@@ -104,6 +104,7 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
           synonyms = synonyms_["_"];
         }
         console.log("synonyms = "+ JSON.stringify(synonyms));
+        console.log("synonyms_ = "+ JSON.stringify(synonyms_));
 
           attachments.push(
               {
