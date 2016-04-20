@@ -88,6 +88,7 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
       parseString(xml, function (err, result) {
         console.dir(JSON.stringify(result));
         definition  = result["entry_list"]["entry"][0]["sens"][0]["mc"][0];
+        synonyms  = result["entry_list"]["entry"][0]["sens"][0]["mc"][0];
         console.log("definition = "+ JSON.stringify(definition));
       });
       console.log(str);
@@ -99,6 +100,12 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
             'fallback': 'Definition -  `'+ definition +'`',
             'title': 'Definition',
             'text': definition,
+            'color': '#7CD197'
+          },
+          {
+            'fallback': 'Synonyms -  `'+ synonyms +'`',
+            'title': 'Synonyms',
+            'text': synonyms,
             'color': '#7CD197'
           }
         ],
