@@ -98,8 +98,8 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
       for(pos = 0; pos < resultNum ; pos++){
         definition  = results["entry_list"]["entry"][pos]["sens"][0]["mc"][0];
         synonyms  = results["entry_list"]["entry"][pos]["sens"][0]["syn"][0];
-
-        if(!synonyms.trim()){
+        console.log("synonyms = "+ JSON.stringify(synonyms));
+        if(!synonyms){
           attachments.push(
               {
                 'fallback': 'Definition -  `'+ definition +'`',
@@ -129,7 +129,7 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
 
 
       }
-      console.log("definition = "+ JSON.stringify(attachments));
+
       var reply_with_attachments = {
         'username': 'My bot' ,
         'text': resultNum+' results for `'+word+'`',
