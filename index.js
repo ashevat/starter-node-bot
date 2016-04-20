@@ -67,7 +67,7 @@ controller.hears(['attachment'], ['direct_message', 'direct_mention'], function 
 
 controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, message) {
   word  = message.text
-  safe_word = encodeURI(word)
+  safe_word = encodeURIComponent(word)
   var options = {
     host: 'www.dictionaryapi.com',
     path: '/api/v1/references/thesaurus/xml/'+safe_word+'?key=d08999a5-7466-4eca-8051-1b2dfd324740'
