@@ -99,6 +99,7 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
         definition  = results["entry_list"]["entry"][pos]["sens"][0]["mc"][0];
         synonyms  = results["entry_list"]["entry"][pos]["sens"][0]["syn"][0];
         synonyms_ = results["entry_list"]["entry"][pos]["sens"][0]["syn"][0]["_"]
+        name = results["entry_list"]["entry"][pos]['$']["id"]
         if(synonyms == undefined){
           synonyms = synonyms_;
         }
@@ -106,8 +107,8 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
 
           attachments.push(
               {
-                'fallback': 'Definition -  `'+ definition +'`',
-                'title': 'Definition',
+                'fallback': 'Definition  -  `'+ definition +'`',
+                'title': 'Definition ('+name+')',
                 'text': definition,
                 'color': '#7CD197'
               },
