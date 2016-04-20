@@ -90,13 +90,21 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
         definition  = result["entry_list"]["entry"][0]["sens"][0]["mc"][0];
         synonyms  = result["entry_list"]["entry"][0]["sens"][0]["syn"][0];
 
-        length  = result["entry_list"]["entry"].length
+        resultNum  = result["entry_list"]["entry"].length
         console.log("definition = "+ JSON.stringify(definition));
       });
       console.log(str);
+
+      var attachments = ""
+      for(pos = 0; pos < resultNum; pos++){
+        attachments += {
+          
+        }
+      }
+
       var reply_with_attachments = {
         'username': 'My bot' ,
-        'text': 'Results for `'+word+'` ('+length+')',
+        'text': resultNum+' results for `'+word+'`',
         'attachments': [
           {
             'fallback': 'Definition -  `'+ definition +'`',
