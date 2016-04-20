@@ -89,7 +89,7 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
       parseString(xml, function (err, result) {
         console.dir(JSON.stringify(result));
         results = result
-        //console.log("definition = "+ JSON.stringify(definition));
+        //
       });
       console.log(str);
 
@@ -113,7 +113,7 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
             }
         )
       }
-
+      console.log("definition = "+ JSON.stringify(attachments));
       var reply_with_attachments = {
         'username': 'My bot' ,
         'text': resultNum+' results for `'+word+'`',
