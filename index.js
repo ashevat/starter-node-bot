@@ -108,7 +108,7 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
           attachments.push(
               {
                 'fallback': 'Definition  -  `'+ definition +'`',
-                'title': 'Definition ('+name+')',
+                'title': 'Definition ('+name.replace("{ndash}", "-")+')',
                 'text': definition,
                 'color': '#7CD197'
               },
