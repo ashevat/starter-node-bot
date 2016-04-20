@@ -99,30 +99,31 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
         definition  = results["entry_list"]["entry"][pos]["sens"][0]["mc"][0];
         synonyms  = results["entry_list"]["entry"][pos]["sens"][0]["syn"][0];
 
-        if(synonyms){
-            attachments.push(
-                {
-                  'fallback': 'Definition -  `'+ definition +'`',
-                  'title': 'Definition',
-                  'text': definition,
-                  'color': '#7CD197'
-                },
-                {
-                  'fallback': 'Synonyms -  `'+ synonyms +'`',
-                  'title': 'Synonyms',
-                  'text': synonyms,
-                  'color': '#7CD197'
-                }
-            )
+        if(!synonyms.trim()){
+          attachments.push(
+              {
+                'fallback': 'Definition -  `'+ definition +'`',
+                'title': 'Definition',
+                'text': definition,
+                'color': '#7CD197'
+              }
+          )
         }else {
-            attachments.push(
-                {
-                  'fallback': 'Definition -  `'+ definition +'`',
-                  'title': 'Definition',
-                  'text': definition,
-                  'color': '#7CD197'
-                }
-            )
+          attachments.push(
+              {
+                'fallback': 'Definition -  `'+ definition +'`',
+                'title': 'Definition',
+                'text': definition,
+                'color': '#7CD197'
+              },
+              {
+                'fallback': 'Synonyms -  `'+ synonyms +'`',
+                'title': 'Synonyms',
+                'text': synonyms,
+                'color': '#7CD197'
+              }
+          )
+
         }
 
 
