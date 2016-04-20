@@ -90,7 +90,7 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
 
 
         resultNum  = result["entry_list"]["entry"].length
-        console.log("definition = "+ JSON.stringify(definition));
+        //console.log("definition = "+ JSON.stringify(definition));
       });
       console.log(str);
 
