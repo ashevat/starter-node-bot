@@ -1,5 +1,5 @@
-name: menchBot
-description: A simple node.js starter bot for Beep Boop
+name: WordsBot
+description: Words - Dictionary & Synonyms
 avatar: resources/avatar.png
 slackscopes:
   - bot
