@@ -2,16 +2,11 @@ var Botkit = require('botkit')
 var http = require('http')
 
 // Expect a SLACK_TOKEN environment variable
-var slackToken = process.env.SLACK_TOKEN
-if (!slackToken) {
-  console.error('SLACK_TOKEN is required!')
-  process.exit(1)
-}
+
 
 var controller = Botkit.slackbot()
-var bot = controller.spawn({
-  token: slackToken
-})
+require('beepboop-botkit').start(controller)
+
 
 bot.startRTM(function (err, bot, payload) {
   if (err) {
