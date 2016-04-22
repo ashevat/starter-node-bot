@@ -1,6 +1,9 @@
 name: menchBot
 description: A simple node.js starter bot for Beep Boop
 avatar: resources/avatar.png
+slackscopes:
+  - bot
+  - commands
 #background: resources/background.png
 #config:
 #  - name: OPTION
