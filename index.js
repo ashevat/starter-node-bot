@@ -8,11 +8,11 @@ var controller = Botkit.slackbot()
 require('beepboop-botkit').start(controller)
 
 
-bot.startRTM(function (err, bot, payload) {
-  if (err) {
-    throw new Error('Could not connect to Slack')
-  }
-})
+//bot.startRTM(function (err, bot, payload) {
+//  if (err) {
+//    throw new Error('Could not connect to Slack')
+//  }
+//})
 
 controller.on('bot_channel_join', function (bot, message) {
   bot.reply(message, "Hello team :wave: I am your WordsBot - give me a word and I will provide you with Definition and Synonyms. \n I support direct mentions and DMs, I will not read what is in this channel,  you will need to `@wordsbot: word-you-are-looking-for` me.")
