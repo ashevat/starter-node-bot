@@ -33,44 +33,34 @@ controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message) {
 })
 
 controller.hears('.*', ['mention'], function (bot, message) {
-  bot.reply(message, message.text)
+  bot.reply(message, 'Hello.')
+  bot.reply(message, 'Thanks for the mention! tell me a word (DM me or @worldbot: word) and I will provide you with Definition and Synonyms')
+
 })
 
 
 controller.hears('help', ['direct_message', 'direct_mention'], function (bot, message) {
   var help = 'I will respond to the following messages: \n' +
-      '`bot hi` for a simple message.\n' +
-      '`bot attachment` to see a Slack attachment message.\n' +
-      '`@<your bot\'s name>` to demonstrate detecting a mention.\n' +
+      'DM me with a word.\n' +
+      '`@worldbot:` with a word.\n' +
       '`bot help` to see this again.'
   bot.reply(message, help)
 })
 
-controller.hears(['attachment'], ['direct_message', 'direct_mention'], function (bot, message) {
-  var text = 'Beep Beep Boop is a ridiculously simple hosting platform for your Slackbots.'
-  var attachments = [{
-    fallback: text,
-    pretext: 'We bring bots to life. :sunglasses: :thumbsup:',
-    title: 'Host, deploy and share your bot in seconds.',
-    image_url: 'https://storage.googleapis.com/beepboophq/_assets/bot-1.22f6fb.png',
-    title_link: 'https://beepboophq.com/',
-    text: text,
-    color: '#7CD197'
-  }]
-
-  bot.reply(message, {
-    attachments: attachments
-  }, function (err, resp) {
-    console.log(err, resp)
-  })
-})
 
 controller.hears(['define.*', 'Define.*'], ['direct_message', 'direct_mention'], function (bot, message) {
-  bot.reply(message, "Looking for `"+message.text+"`");
+  message.text = message.text.substr(7).trim();
+  defineWord(bot, message);
+
 })
 
 controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, message) {
+  defineWord(bot, message);
+})
+
+function defineWord(bot, message){
   word  = message.text
+  bot.reply(message, "Looking for `"+word+"`");
   safe_word = encodeURIComponent(word)
   var options = {
     host: 'www.dictionaryapi.com',
@@ -114,20 +104,20 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
         //console.log("synonyms = "+ JSON.stringify(synonyms));
         //console.log("synonyms_ = "+ JSON.stringify(synonyms_));
         color = getRandomColor();
-          attachments.push(
-              {
-                'fallback': 'Definition  -  `'+ definition +'`',
-                'title': 'Definition ('+name.replace("{ndash}", "-")+')',
-                'text': definition,
-                'color': color
-              },
-              {
-                'fallback': 'Synonyms -  `'+ synonyms +'`',
-                'title': 'Synonyms ('+name.replace("{ndash}", "-")+')',
-                'text': synonyms,
-                'color': color
-              }
-          )
+        attachments.push(
+            {
+              'fallback': 'Definition  -  `'+ definition +'`',
+              'title': 'Definition ('+name.replace("{ndash}", "-")+')',
+              'text': definition,
+              'color': color
+            },
+            {
+              'fallback': 'Synonyms -  `'+ synonyms +'`',
+              'title': 'Synonyms ('+name.replace("{ndash}", "-")+')',
+              'text': synonyms,
+              'color': color
+            }
+        )
 
       }
 
@@ -149,10 +139,8 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
 
 
 
-  //bot.reply(message, reply_with_attachments);
 
 }
-)
 
 function getRandomColor() {
   var letters = '0123456789ABCDEF'.split('');
