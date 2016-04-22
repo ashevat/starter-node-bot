@@ -20,11 +20,11 @@ bot.startRTM(function (err, bot, payload) {
 })
 
 controller.on('bot_channel_join', function (bot, message) {
-  bot.reply(message, "Hello team :wave: - I am your WordsBot - give me a word and I will provide you with Definition and Synonyms ")
+  bot.reply(message, "Hello team :wave: I am your WordsBot - give me a word and I will provide you with Definition and Synonyms. \n I support direct mentions and DMs, I will not read what is in this channel,  you will need to `@wordsbot: word-you-are-looking-for` me.")
 })
 
 controller.hears(['hello', 'hi'], ['direct_mention'], function (bot, message) {
-  bot.reply(message, 'Hello.')
+  bot.reply(message, ':wave:')
 })
 
 controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message) {
@@ -34,15 +34,15 @@ controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message) {
 
 controller.hears('.*', ['mention'], function (bot, message) {
   bot.reply(message, 'Hello.')
-  bot.reply(message, 'Thanks for the mention! tell me a word (DM me or @worldbot: word) and I will provide you with Definition and Synonyms')
+  bot.reply(message, 'Thanks for the mention! tell me a word (DM me or @wordsbot: word) and I will provide you with Definition and Synonyms')
 
 })
 
 
 controller.hears('help', ['direct_message', 'direct_mention'], function (bot, message) {
   var help = 'I will respond to the following messages: \n' +
-      'DM me with a word.\n' +
-      '`@worldbot:` with a word.\n' +
+      '`DM` me with a word.\n' +
+      '`@wordsbot:` with a word.\n' +
       '`bot help` to see this again.'
   bot.reply(message, help)
 })
@@ -60,7 +60,7 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
 
 function defineWord(bot, message){
   word  = message.text
-  bot.reply(message, "Looking for `"+word+"`");
+  //bot.reply(message, "Looking for `"+word+"`");
   safe_word = encodeURIComponent(word)
   var options = {
     host: 'www.dictionaryapi.com',
