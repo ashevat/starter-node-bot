@@ -14,6 +14,16 @@ require('beepboop-botkit').start(controller)
 //  }
 //})
 
+
+controller.setupWebserver(process.env.PORT,function(err,webserver) {
+  controller.createWebhookEndpoints(webserver);
+});
+
+controller.on('slash_command',function(bot,message) {
+  bot.replyPublic(message,'<@' + message.user + '> is cool!');
+  bot.replyPrivate(message,'*nudge nudge wink wink*');
+});
+
 controller.on('bot_channel_join', function (bot, message) {
   bot.reply(message, "Hello team :wave: I am your WordsBot - give me a word and I will provide you with Definition and Synonyms. \n I support direct mentions and DMs, I will not read what is in this channel,  you will need to `@wordsbot: word-you-are-looking-for` me.")
 })
