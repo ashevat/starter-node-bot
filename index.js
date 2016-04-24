@@ -19,9 +19,10 @@ controller.setupWebserver(process.env.PORT,function(err,webserver) {
   controller.createWebhookEndpoints(webserver);
 });
 
-controller.on('slash_command',function(bot,message) {
-  bot.replyPublic(message,'is cool!');
-  bot.replyPrivate(message,'*nudge nudge wink wink*');
+controller.on('slash_command', function (bot, message) {
+  console.log('Here is the actual slash command used: ', message.command);
+
+  bot.replyPublic(message, '<@' + message.user + '> is cool!');
 });
 
 controller.on('bot_channel_join', function (bot, message) {
