@@ -20,7 +20,7 @@ controller.setupWebserver(process.env.PORT,function(err,webserver) {
 });
 
 controller.on('slash_command',function(bot,message) {
-  bot.replyPublic(message,'<@' + message.user + '> is cool!');
+  bot.replyPublic(message,'is cool!');
   bot.replyPrivate(message,'*nudge nudge wink wink*');
 });
 
