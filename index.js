@@ -130,10 +130,10 @@ function defineWord(bot, message){
 
 
       var reply_with_attachments = {
-        'username': 'My bot' ,
+        //'username': 'My bot' ,
         'text': resultNum+' results for `'+word+'`',
         'attachments': attachments,
-        'icon_url': 'http://lorempixel.com/48/48'
+       // 'icon_url': 'http://lorempixel.com/48/48'
       }
 
 
