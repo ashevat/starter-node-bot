@@ -14,8 +14,10 @@ require('beepboop-botkit').start(controller)
 //  }
 //})
 
+var morgan = require('morgan')
 
 controller.setupWebserver(process.env.PORT,function(err,webserver) {
+  webserver.use(morgan('short'))
   controller.createWebhookEndpoints(webserver);
 });
 
