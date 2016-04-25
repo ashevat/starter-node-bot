@@ -64,6 +64,21 @@ controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, mess
   defineWord(bot, message);
 })
 
+
+controller.on('create_bot',function(bot,config) {
+
+
+      bot.startPrivateConversation({user: config.createdBy},function(err,convo) {
+        if (err) {
+          console.log(err);
+        } else {
+          convo.say('I am a bot that has just joined your team');
+          convo.say('You must now /invite me to a channel so that I can be of use!');
+        }
+      });
+
+});
+
 function defineWord(bot, message){
   word  = message.text
   //bot.reply(message, "Looking for `"+word+"`");
