@@ -5,7 +5,7 @@ var http = require('http')
 
 
 var controller = Botkit.slackbot()
-require('beepboop-botkit').start(controller)
+var con = require('beepboop-botkit').start(controller)
 
 
 //bot.startRTM(function (err, bot, payload) {
@@ -23,8 +23,29 @@ controller.setupWebserver(process.env.PORT,function(err,webserver) {
 controller.on('slash_command', function (bot, message) {
   console.log('Here is the actual slash command used: ', message.command);
   defineWord(bot, message, 2);
-  //bot.replyPublic(message, '<@' + message.user + '> is cool!');
 });
+
+
+con.on('add_resource', function (message) {
+  var slackTeamId = message.resource.SlackTeamID
+  var slackUserId = message.resource.SlackUserID
+  console.log('add_resource', slackTeamId, slackUserId, message)
+
+  if (message.isNew && slackUserId) {
+    var bot = bbb.botByTeamId(slackTeamId)
+    if (!bot) {
+      return console.log('Error looking up botkit bot for team %s', slackTeamId)
+    }
+
+    console.log('starting private conversation with ', slackUserId)
+    bot.api.im.open({user: slackUserId}, function (err, response) {
+      if (err) return console.log(err)
+      var dmChannel = response.channel.id
+      bot.say({channel: dmChannel, text: 'I am the most glorious bot to join your team'})
+      bot.say({channel: dmChannel, text: 'You must now /invite me to a channel so that I may show everyone how dumb you are'})
+    })
+  }
+})
 
 controller.on('bot_channel_join', function (bot, message) {
   bot.reply(message, "Hello team :wave: I am your WordsBot - give me a word and I will provide you with Definition and Synonyms. \n I support direct mentions and DMs, I will not read what is in this channel,  you will need to `@wordsbot: word-you-are-looking-for` me.")
@@ -50,6 +71,7 @@ controller.hears('help', ['direct_message', 'direct_mention'], function (bot, me
   var help = 'I will respond to the following messages: \n' +
       '`DM` me with a word.\n' +
       '`@wordsbot:` with a word.\n' +
+      '`/define` with a word (this way only you see the results).\n' +
       '`bot help` to see this again.'
   bot.reply(message, help)
 })
