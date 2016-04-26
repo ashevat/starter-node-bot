@@ -22,9 +22,9 @@ controller.setupWebserver(process.env.PORT,function(err,webserver) {
 });
 
 controller.on('slash_command', function (bot, message) {
-  console.log('Here is the actual slash command used: ', message.command);
-
-  bot.replyPublic(message, '<@' + message.user + '> is cool!');
+  //console.log('Here is the actual slash command used: ', message.command);
+  defineWord(bot, message);
+  //bot.replyPublic(message, '<@' + message.user + '> is cool!');
 });
 
 controller.on('bot_channel_join', function (bot, message) {
