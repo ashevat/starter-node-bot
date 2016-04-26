@@ -17,14 +17,13 @@ require('beepboop-botkit').start(controller)
 var morgan = require('morgan')
 
 controller.setupWebserver(process.env.PORT,function(err,webserver) {
-  webserver.use(morgan('short'))
   controller.createWebhookEndpoints(webserver);
 });
 
 controller.on('slash_command', function (bot, message) {
-  //console.log('Here is the actual slash command used: ', message.command);
-  defineWord(bot, message);
-  //bot.replyPublic(message, '<@' + message.user + '> is cool!');
+  console.log('Here is the actual slash command used: ', message.command);
+
+  bot.replyPublic(message,defineWord(bot, message));
 });
 
 controller.on('bot_channel_join', function (bot, message) {
@@ -58,12 +57,13 @@ controller.hears('help', ['direct_message', 'direct_mention'], function (bot, me
 
 controller.hears(['define.*', 'Define.*'], ['direct_message', 'direct_mention'], function (bot, message) {
   message.text = message.text.substr(7).trim();
-  defineWord(bot, message);
+  bot.reply(message, defineWord(bot, message));
 
 })
 
 controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, message) {
-  defineWord(bot, message);
+
+  bot.reply(message, defineWord(bot, message));
 })
 
 
@@ -82,6 +82,7 @@ controller.on('create_bot',function(bot,config) {
 });
 
 function defineWord(bot, message){
+  results = "";
   word  = message.text
   //bot.reply(message, "Looking for `"+word+"`");
   safe_word = encodeURIComponent(word)
@@ -153,8 +154,9 @@ function defineWord(bot, message){
        // 'icon_url': 'http://lorempixel.com/48/48'
       }
 
+      results = reply_with_attachments;
+      return results;
 
-      bot.reply(message, reply_with_attachments);
     });
   }
 
