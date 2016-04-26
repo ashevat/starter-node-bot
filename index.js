@@ -156,7 +156,7 @@ function defineWord(bot, message, replyType){
       if(replyType == 1){
         bot.reply(message, reply_with_attachments);
       }else if(replyType == 2){
-        bot.replyPublic(message, reply_with_attachments);
+        bot.replyPrivate(message, reply_with_attachments);
       }
 
     });
