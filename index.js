@@ -22,8 +22,8 @@ controller.setupWebserver(process.env.PORT,function(err,webserver) {
 
 controller.on('slash_command', function (bot, message) {
   console.log('Here is the actual slash command used: ', message.command);
-
-  bot.replyPublic(message, '<@' + message.user + '> is cool!');
+  defineWord(bot, message, 2);
+  //bot.replyPublic(message, '<@' + message.user + '> is cool!');
 });
 
 controller.on('bot_channel_join', function (bot, message) {
@@ -57,12 +57,12 @@ controller.hears('help', ['direct_message', 'direct_mention'], function (bot, me
 
 controller.hears(['define.*', 'Define.*'], ['direct_message', 'direct_mention'], function (bot, message) {
   message.text = message.text.substr(7).trim();
-  defineWord(bot, message);
+  defineWord(bot, message, 1);
 
 })
 
 controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, message) {
-  defineWord(bot, message);
+  defineWord(bot, message, 1);
 })
 
 
@@ -80,7 +80,8 @@ controller.on('create_bot',function(bot,config) {
 
 });
 
-function defineWord(bot, message){
+function defineWord(bot, message, replyType){
+  var result = "";
   word  = message.text
   //bot.reply(message, "Looking for `"+word+"`");
   safe_word = encodeURIComponent(word)
@@ -152,8 +153,12 @@ function defineWord(bot, message){
        // 'icon_url': 'http://lorempixel.com/48/48'
       }
 
+      if(replyType == 1){
+        bot.reply(message, reply_with_attachments);
+      }else if(replyType == 2){
+        bot.replyPublic(message, reply_with_attachments);
+      }
 
-      bot.reply(message, reply_with_attachments);
     });
   }
 
