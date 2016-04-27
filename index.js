@@ -29,10 +29,11 @@ controller.on('slash_command', function (bot, message) {
 con.on('add_resource', function (message) {
   var slackTeamId = message.resource.SlackTeamID
   var slackUserId = message.resource.SlackUserID
-  console.log('add_resource', slackTeamId, slackUserId, message)
+  console.log('Got to A! add_resource', slackTeamId, slackUserId, message)
 
   if (message.isNew && slackUserId) {
-    var bot = bbb.botByTeamId(slackTeamId)
+    console.log('Got to B ', slackUserId);
+    var bot = con.botByTeamId(slackTeamId)
     if (!bot) {
       return console.log('Error looking up botkit bot for team %s', slackTeamId)
     }
@@ -44,6 +45,8 @@ con.on('add_resource', function (message) {
       bot.say({channel: dmChannel, text: 'I am the most glorious bot to join your team'})
       bot.say({channel: dmChannel, text: 'You must now /invite me to a channel so that I may show everyone how dumb you are'})
     })
+  }else{
+    console.log('Did not go to B ', slackUserId);
   }
 })
 
