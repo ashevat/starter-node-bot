@@ -39,12 +39,22 @@ con.on('add_resource', function (message) {
     }
 
     console.log('starting private conversation with ', slackUserId)
-    bot.api.im.open({user: slackUserId}, function (err, response) {
-      if (err) return console.log(err)
-      var dmChannel = response.channel.id
-      bot.say({channel: dmChannel, text: 'I am the most glorious bot to join your team'})
-      bot.say({channel: dmChannel, text: 'You must now /invite me to a channel so that I may show everyone how dumb you are'})
-    })
+    //bot.api.im.open({user: slackUserId}, function (err, response) {
+     // if (err) return console.log(err)
+     // var dmChannel = response.channel.id
+     // bot.say({channel: dmChannel, text: 'I am the most glorious bot to join your team'})
+     // bot.say({channel: dmChannel, text: 'You must now /invite me to a channel so that I may show everyone how dumb you are'})
+    //})
+    bot.startPrivateConversation({user: slackUserId},function(err,convo) {
+      if (err) {
+        console.log(err);
+      } else {
+        convo.say('I am a bot that has just joined your team');
+        convo.say('You must now /invite me to a channel so that I can be of use!');
+      }
+    });
+
+
   }else{
     console.log('Did not go to B ', slackUserId);
   }
