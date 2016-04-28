@@ -49,8 +49,8 @@ con.on('add_resource', function (message) {
       if (err) {
         console.log(err);
       } else {
-        convo.say('I am a bot that has just joined your team');
-        convo.say('You must now /invite me to a channel so that I can be of use!');
+        convo.say(':wave: I am the Words bot that has just joined your team');
+        convo.say('You can now /invite me to a channel so that I can be of use to the team or DM/@wordsbot me anytime!');
       }
     });
 
@@ -70,12 +70,12 @@ controller.hears(['hello', 'hi'], ['direct_mention'], function (bot, message) {
 
 controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message) {
   bot.reply(message, 'Hello. ')
-  bot.reply(message, 'It\'s nice to talk to you directly. tell me a word and I will provide you with Definition and Synonyms')
+  bot.reply(message, 'It\'s nice to talk to you directly. Give me a word and I will provide you with Definition and Synonyms')
 })
 
 controller.hears('.*', ['mention'], function (bot, message) {
   bot.reply(message, 'Hello.')
-  bot.reply(message, 'Thanks for the mention! tell me a word (DM me or @wordsbot: word) and I will provide you with Definition and Synonyms')
+  bot.reply(message, 'Thanks for the mention! Give me a word (DM me or @wordsbot: word) and I will provide you with Definition and Synonyms')
 
 })
 
