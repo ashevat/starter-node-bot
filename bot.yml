@@ -16,5 +16,5 @@ slackscopes:
 #    type: secret
 #    default: not secret though
 #screenshots:
-#  - screenshot: resources/screenshot1.png
+  - screenshot: resources/screen1.png
 #  - screenshot: resources/screenshot2.jpg
