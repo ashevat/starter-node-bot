@@ -1,6 +1,6 @@
 name: WordsBot
 description: Words - Dictionary & Synonyms
-avatar: resources/avatar.png
+avatar: resources/words.png
 slackscopes:
   - bot
   - commands
