@@ -5,7 +5,8 @@ var http = require('http')
 
 
 var controller = Botkit.slackbot()
-var con = require('beepboop-botkit').start(controller)
+//var con = require('beepboop-botkit').start(controller)
+var con = require('beepboop-botkit').start(controller, { debug: true })
 
 
 //bot.startRTM(function (err, bot, payload) {
