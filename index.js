@@ -32,7 +32,7 @@ beepboop.on('botkit.rtm.started', function (bot, resource, meta) {
       }
       var dmChannel = response.channel.id
       bot.say({channel: dmChannel, text: 'Thanks for adding me to your team!'})
-      bot.say({channel: dmChannel, text: 'You can now /invite me to a channel so that I can be of use to the team or DM/@wordsbot me anytime!'})
+      bot.say({channel: dmChannel, text: 'You can now /invite me to a channel, so that I can be of use to the team, or DM/@wordsbot me anytime!'})
     })
   }
 })
