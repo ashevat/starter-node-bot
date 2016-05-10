@@ -1,4 +1,5 @@
 var Botkit = require('botkit')
+var BeepBoop = require('beepboop-botkit')
 var http = require('http')
 
 // Expect a SLACK_TOKEN environment variable
