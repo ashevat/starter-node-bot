@@ -6,14 +6,8 @@ var http = require('http')
 
 var controller = Botkit.slackbot()
 //var con = require('beepboop-botkit').start(controller)
-var con = require('beepboop-botkit').start(controller, { debug: true })
+var beepboop = BeepBoop.start(controller)
 
-
-//bot.startRTM(function (err, bot, payload) {
-//  if (err) {
-//    throw new Error('Could not connect to Slack')
-//  }
-//})
 
 var morgan = require('morgan')
 
@@ -27,6 +21,22 @@ controller.on('slash_command', function (bot, message) {
 });
 
 
+beepboop.on('botkit.rtm.started', function (bot, resource, meta) {
+  var slackUserId = resource.SlackUserID
+
+  if (meta.isNew && slackUserId) {
+    bot.api.im.open({ user: slackUserId }, function (err, response) {
+      if (err) {
+        return console.log(err)
+      }
+      var dmChannel = response.channel.id
+      bot.say({channel: dmChannel, text: 'Thanks for adding me to your team!'})
+      bot.say({channel: dmChannel, text: 'Just /invite me to a channel!'})
+    })
+  }
+})
+
+/*
 con.on('add_resource', function (message) {
   var slackTeamId = message.resource.SlackTeamID
   var slackUserId = message.resource.SlackUserID
@@ -60,6 +70,9 @@ con.on('add_resource', function (message) {
     console.log('Did not go to B ', slackUserId);
   }
 })
+*/
+
+
 
 controller.on('bot_channel_join', function (bot, message) {
   bot.reply(message, "Hello team :wave: I am your WordsBot - give me a word and I will provide you with Definition and Synonyms. \n I support direct mentions and DMs, I will not read what is in this channel,  you will need to `@wordsbot: word-you-are-looking-for` me.")
