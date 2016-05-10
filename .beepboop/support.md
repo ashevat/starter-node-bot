@@ -5,7 +5,7 @@
 
 2) Click on "Add to Slack"
 
-3) Your done!
+3) You're done!
 
 ## Working with WordsBot
 
