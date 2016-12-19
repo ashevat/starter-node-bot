@@ -22,8 +22,9 @@
   },
   "homepage": "https://github.com/beepboophq/node-slack-bot#readme",
   "dependencies": {
-    "botkit": "0.1.1",
     "beepboop-botkit": "1.4.0",
+    "botkit": "0.1.1",
+    "dashbot": "^0.8.2",
     "morgan": "1.7.0"
   }
 }

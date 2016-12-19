@@ -1,5 +1,6 @@
 var Botkit = require('botkit')
 var BeepBoop = require('beepboop-botkit')
+var dashbot = require('dashbot')(lvlHLzDVxDTPSz59G6XivIZZWkdxHcZLmaSv46bZ).slack;
 var http = require('http')
 
 // Expect a SLACK_TOKEN environment variable
@@ -7,6 +8,8 @@ var http = require('http')
 
 var controller = Botkit.slackbot()
 //var con = require('beepboop-botkit').start(controller)
+controller.middleware.receive.use(dashbot.receive);
+controller.middleware.send.use(dashbot.send);
 var beepboop = BeepBoop.start(controller)
 
 
