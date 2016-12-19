@@ -1,6 +1,6 @@
 var Botkit = require('botkit')
 var BeepBoop = require('beepboop-botkit')
-var dashbot = require('dashbot')(lvlHLzDVxDTPSz59G6XivIZZWkdxHcZLmaSv46bZ).slack;
+var dashbot = require('dashbot')("lvlHLzDVxDTPSz59G6XivIZZWkdxHcZLmaSv46bZ").slack;
 var http = require('http')
 
 // Expect a SLACK_TOKEN environment variable
